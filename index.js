@@ -54,23 +54,23 @@ let party = [
 } 
 // changeAnimal("Sarah")(3)
 
- const removePotion = (name) => {
+ const usePotion = (name) => {
   party.forEach((element) => {
   if(name == element.name){
   element.hitpoints = element.hitpoints + 20;
   const index = element.belongings.indexOf("potion");
-  const remove = element.belongings.splice(index,1);
+  element.belongings.splice(index,1);
   }
   })
 } 
 // Remove potion from Timothy's inventory and adding 20 to hitpoints (4) 
-// removePotion("Timothy");
+// usePotion("Timothy");
 
- const breadThief = (name, name1) => {
+ const stealBread = (name, name1) => {
 party.forEach((element) => {
 if(name == element.name){
   const index = element.belongings.indexOf("bread");
-  const remove = element.belongings.splice(index,1);
+  element.belongings.splice(index,1);
 }
 else if(name1 == element.name){
   element.belongings.push("bread");
@@ -78,35 +78,35 @@ else if(name1 == element.name){
 })
 }
 // Timothy stole Joline's bread(5)
-//breadThief("Joline", "Timothy");
+//stealBread("Joline", "Timothy");
 
-const jolineLeft = (leavingMember) => {
+const removeMember = (leavingMember) => {
   party.forEach((element) => {
     if(leavingMember == element.name){
-      const remove = element.splice[0];
+      element.splice[0];
     }
   })
 }
 // Remove Joline from party completely(6).  
-// jolineLeft("Joline");
+// removeMember("Joline");
 
 const joiningMember = (newAdventurer) => {
-  const add = party.push(newAdventurer);
+  party.push(newAdventurer);
   }
 
-joiningMember("name: Jordan, hitpoints: 20,belongings: [sword, gloves, mask]");
+joiningMember({name: "Jordan", hitpoints: 20,belongings: ["sword", "gloves", "mask"]});
 // Joining member(7)
 
 
 const addGold = (amountofGold) => {
 party.forEach((element) => {
-  element.gold = Math.floor(amountofGold/3);
+  element.gold = Math.floor(amountofGold/party.length);
 }) 
 }
 addGold(200);
 // Add gold(8)
 
-const leavingAnimal = (name) => {
+const switchAnimal = (name) => {
   party.forEach((element) => {
     if(name == element.name){
       element.companion.type = "bear";
@@ -114,34 +114,33 @@ const leavingAnimal = (name) => {
     }
   })
 } 
-leavingAnimal("Sarah");
+switchAnimal("Sarah");
 // Sarah loses gold and gets a bear(9)
 
-const changingSwordName = (name) => {
+const changeSwordName = (name) => {
   party.forEach((element) => {
   if(name == element.name){
     const index = element.belongings.indexOf("sword");
-    const remove = element.belongings.splice(index,1);
+    element.belongings.splice(index,1);
     element.belongings.push("Rusty Sword");
   }
-})
+}) 
 }
-changingSwordName("Timothy");
+changeSwordName("Timothy");
 // Changing Timmy's sword from "sword" to "rusty sword"(10)
 
-const setLeader = (name) => {
-  party.forEach((element) => {
-    if(name == element.name){
-      element.leader = "true";
-    }
-    else {
-      element.leader = "false";
-    }
-  })
+const setLeader = memberName => {
+  party.forEach(element => {
+      if (memberName == element.name) {
+          element.leader = true;
+      } else {
+          element.leader = false;
+      }
+  });
 }
 
-setLeader("Timothy");
+setLeader("Sarah");
 
 
 
-console.log(party[0]);
+console.log(party);
